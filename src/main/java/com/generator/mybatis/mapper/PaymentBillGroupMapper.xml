@@ -1,0 +1,736 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.generator.mybatis.mapper.PaymentBillGroupMapper" >
+  <resultMap id="BaseResultMap" type="com.generator.mybatis.po.PaymentBillGroup" >
+    <id column="BILL_GROUP_ID" property="billGroupId" jdbcType="VARCHAR" />
+    <result column="BUYER_PARTY_ID" property="buyerPartyId" jdbcType="VARCHAR" />
+    <result column="BUYER_NAME" property="buyerName" jdbcType="VARCHAR" />
+    <result column="SELLER_PARTY_ID" property="sellerPartyId" jdbcType="VARCHAR" />
+    <result column="SELLER_NAME" property="sellerName" jdbcType="VARCHAR" />
+    <result column="INVOICE_TYPE" property="invoiceType" jdbcType="CHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="DEAL_AMOUNT" property="dealAmount" jdbcType="DECIMAL" />
+    <result column="DEAL_QUANTITY" property="dealQuantity" jdbcType="DECIMAL" />
+    <result column="BUYER_CHECK" property="buyerCheck" jdbcType="CHAR" />
+    <result column="SELLER_CHECK" property="sellerCheck" jdbcType="CHAR" />
+    <result column="CHECK_STATUS" property="checkStatus" jdbcType="VARCHAR" />
+    <result column="INVOICE_STATUS" property="invoiceStatus" jdbcType="CHAR" />
+    <result column="settle_status" property="settleStatus" jdbcType="INTEGER" />
+    <result column="LAST_UPDATED_STAMP" property="lastUpdatedStamp" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPDATED_TX_STAMP" property="lastUpdatedTxStamp" jdbcType="TIMESTAMP" />
+    <result column="CREATED_STAMP" property="createdStamp" jdbcType="TIMESTAMP" />
+    <result column="CREATED_TX_STAMP" property="createdTxStamp" jdbcType="TIMESTAMP" />
+    <result column="PAYMENT_ID" property="paymentId" jdbcType="VARCHAR" />
+    <result column="REPAYMENT_AMOUNT" property="repaymentAmount" jdbcType="DECIMAL" />
+    <result column="DISCOUNT_AMOUNT" property="discountAmount" jdbcType="DECIMAL" />
+    <result column="INVOICE_AMOUNT" property="invoiceAmount" jdbcType="DECIMAL" />
+    <result column="FINANCING_LAST_AMOUNT" property="financingLastAmount" jdbcType="DECIMAL" />
+    <result column="FINANCING_FEE" property="financingFee" jdbcType="DECIMAL" />
+    <result column="DEAL_QUANTITY_EXCLUDES_CASS_LOAN" property="dealQuantityExcludesCassLoan" jdbcType="DECIMAL" />
+    <result column="IS_CASS_LOAN" property="isCassLoan" jdbcType="CHAR" />
+    <result column="CASS_DISCOUNT_AMOUNT" property="cassDiscountAmount" jdbcType="DECIMAL" />
+    <result column="UPDATE_DATE" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="PAYMENT_METHOD_ID" property="paymentMethodId" jdbcType="VARCHAR" />
+    <result column="TRADE_NO" property="tradeNo" jdbcType="VARCHAR" />
+    <result column="PUNISH_RATE" property="punishRate" jdbcType="VARCHAR" />
+    <result column="INVOICE_DATE" property="invoiceDate" jdbcType="TIMESTAMP" />
+    <result column="PUNISH_AMOUNT" property="punishAmount" jdbcType="DECIMAL" />
+    <result column="IS_OVERDUE" property="isOverdue" jdbcType="CHAR" />
+    <result column="REPAIRE_OVERDUE_DAY" property="repaireOverdueDay" jdbcType="INTEGER" />
+    <result column="SUPPLIER_OVERDUE_DAY" property="supplierOverdueDay" jdbcType="INTEGER" />
+    <result column="PLATFORM_OVERDUE_DAY" property="platformOverdueDay" jdbcType="INTEGER" />
+    <result column="MAX_DEADLINE_DATE" property="maxDeadlineDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    BILL_GROUP_ID, BUYER_PARTY_ID, BUYER_NAME, SELLER_PARTY_ID, SELLER_NAME, INVOICE_TYPE, 
+    TYPE, DEAL_AMOUNT, DEAL_QUANTITY, BUYER_CHECK, SELLER_CHECK, CHECK_STATUS, INVOICE_STATUS, 
+    settle_status, LAST_UPDATED_STAMP, LAST_UPDATED_TX_STAMP, CREATED_STAMP, CREATED_TX_STAMP, 
+    PAYMENT_ID, REPAYMENT_AMOUNT, DISCOUNT_AMOUNT, INVOICE_AMOUNT, FINANCING_LAST_AMOUNT, 
+    FINANCING_FEE, DEAL_QUANTITY_EXCLUDES_CASS_LOAN, IS_CASS_LOAN, CASS_DISCOUNT_AMOUNT, 
+    UPDATE_DATE, PAYMENT_METHOD_ID, TRADE_NO, PUNISH_RATE, INVOICE_DATE, PUNISH_AMOUNT, 
+    IS_OVERDUE, REPAIRE_OVERDUE_DAY, SUPPLIER_OVERDUE_DAY, PLATFORM_OVERDUE_DAY, MAX_DEADLINE_DATE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.generator.mybatis.po.PaymentBillGroupExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from payment_bill_group
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from payment_bill_group
+    where BILL_GROUP_ID = #{billGroupId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from payment_bill_group
+    where BILL_GROUP_ID = #{billGroupId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.generator.mybatis.po.PaymentBillGroupExample" >
+    delete from payment_bill_group
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.generator.mybatis.po.PaymentBillGroup" >
+    insert into payment_bill_group (BILL_GROUP_ID, BUYER_PARTY_ID, BUYER_NAME, 
+      SELLER_PARTY_ID, SELLER_NAME, INVOICE_TYPE, 
+      TYPE, DEAL_AMOUNT, DEAL_QUANTITY, 
+      BUYER_CHECK, SELLER_CHECK, CHECK_STATUS, 
+      INVOICE_STATUS, settle_status, LAST_UPDATED_STAMP, 
+      LAST_UPDATED_TX_STAMP, CREATED_STAMP, CREATED_TX_STAMP, 
+      PAYMENT_ID, REPAYMENT_AMOUNT, DISCOUNT_AMOUNT, 
+      INVOICE_AMOUNT, FINANCING_LAST_AMOUNT, FINANCING_FEE, 
+      DEAL_QUANTITY_EXCLUDES_CASS_LOAN, IS_CASS_LOAN, 
+      CASS_DISCOUNT_AMOUNT, UPDATE_DATE, PAYMENT_METHOD_ID, 
+      TRADE_NO, PUNISH_RATE, INVOICE_DATE, 
+      PUNISH_AMOUNT, IS_OVERDUE, REPAIRE_OVERDUE_DAY, 
+      SUPPLIER_OVERDUE_DAY, PLATFORM_OVERDUE_DAY, 
+      MAX_DEADLINE_DATE)
+    values (#{billGroupId,jdbcType=VARCHAR}, #{buyerPartyId,jdbcType=VARCHAR}, #{buyerName,jdbcType=VARCHAR}, 
+      #{sellerPartyId,jdbcType=VARCHAR}, #{sellerName,jdbcType=VARCHAR}, #{invoiceType,jdbcType=CHAR}, 
+      #{type,jdbcType=VARCHAR}, #{dealAmount,jdbcType=DECIMAL}, #{dealQuantity,jdbcType=DECIMAL}, 
+      #{buyerCheck,jdbcType=CHAR}, #{sellerCheck,jdbcType=CHAR}, #{checkStatus,jdbcType=VARCHAR}, 
+      #{invoiceStatus,jdbcType=CHAR}, #{settleStatus,jdbcType=INTEGER}, #{lastUpdatedStamp,jdbcType=TIMESTAMP}, 
+      #{lastUpdatedTxStamp,jdbcType=TIMESTAMP}, #{createdStamp,jdbcType=TIMESTAMP}, #{createdTxStamp,jdbcType=TIMESTAMP}, 
+      #{paymentId,jdbcType=VARCHAR}, #{repaymentAmount,jdbcType=DECIMAL}, #{discountAmount,jdbcType=DECIMAL}, 
+      #{invoiceAmount,jdbcType=DECIMAL}, #{financingLastAmount,jdbcType=DECIMAL}, #{financingFee,jdbcType=DECIMAL}, 
+      #{dealQuantityExcludesCassLoan,jdbcType=DECIMAL}, #{isCassLoan,jdbcType=CHAR}, 
+      #{cassDiscountAmount,jdbcType=DECIMAL}, #{updateDate,jdbcType=TIMESTAMP}, #{paymentMethodId,jdbcType=VARCHAR}, 
+      #{tradeNo,jdbcType=VARCHAR}, #{punishRate,jdbcType=VARCHAR}, #{invoiceDate,jdbcType=TIMESTAMP}, 
+      #{punishAmount,jdbcType=DECIMAL}, #{isOverdue,jdbcType=CHAR}, #{repaireOverdueDay,jdbcType=INTEGER}, 
+      #{supplierOverdueDay,jdbcType=INTEGER}, #{platformOverdueDay,jdbcType=INTEGER}, 
+      #{maxDeadlineDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.generator.mybatis.po.PaymentBillGroup" >
+    insert into payment_bill_group
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="billGroupId != null" >
+        BILL_GROUP_ID,
+      </if>
+      <if test="buyerPartyId != null" >
+        BUYER_PARTY_ID,
+      </if>
+      <if test="buyerName != null" >
+        BUYER_NAME,
+      </if>
+      <if test="sellerPartyId != null" >
+        SELLER_PARTY_ID,
+      </if>
+      <if test="sellerName != null" >
+        SELLER_NAME,
+      </if>
+      <if test="invoiceType != null" >
+        INVOICE_TYPE,
+      </if>
+      <if test="type != null" >
+        TYPE,
+      </if>
+      <if test="dealAmount != null" >
+        DEAL_AMOUNT,
+      </if>
+      <if test="dealQuantity != null" >
+        DEAL_QUANTITY,
+      </if>
+      <if test="buyerCheck != null" >
+        BUYER_CHECK,
+      </if>
+      <if test="sellerCheck != null" >
+        SELLER_CHECK,
+      </if>
+      <if test="checkStatus != null" >
+        CHECK_STATUS,
+      </if>
+      <if test="invoiceStatus != null" >
+        INVOICE_STATUS,
+      </if>
+      <if test="settleStatus != null" >
+        settle_status,
+      </if>
+      <if test="lastUpdatedStamp != null" >
+        LAST_UPDATED_STAMP,
+      </if>
+      <if test="lastUpdatedTxStamp != null" >
+        LAST_UPDATED_TX_STAMP,
+      </if>
+      <if test="createdStamp != null" >
+        CREATED_STAMP,
+      </if>
+      <if test="createdTxStamp != null" >
+        CREATED_TX_STAMP,
+      </if>
+      <if test="paymentId != null" >
+        PAYMENT_ID,
+      </if>
+      <if test="repaymentAmount != null" >
+        REPAYMENT_AMOUNT,
+      </if>
+      <if test="discountAmount != null" >
+        DISCOUNT_AMOUNT,
+      </if>
+      <if test="invoiceAmount != null" >
+        INVOICE_AMOUNT,
+      </if>
+      <if test="financingLastAmount != null" >
+        FINANCING_LAST_AMOUNT,
+      </if>
+      <if test="financingFee != null" >
+        FINANCING_FEE,
+      </if>
+      <if test="dealQuantityExcludesCassLoan != null" >
+        DEAL_QUANTITY_EXCLUDES_CASS_LOAN,
+      </if>
+      <if test="isCassLoan != null" >
+        IS_CASS_LOAN,
+      </if>
+      <if test="cassDiscountAmount != null" >
+        CASS_DISCOUNT_AMOUNT,
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE,
+      </if>
+      <if test="paymentMethodId != null" >
+        PAYMENT_METHOD_ID,
+      </if>
+      <if test="tradeNo != null" >
+        TRADE_NO,
+      </if>
+      <if test="punishRate != null" >
+        PUNISH_RATE,
+      </if>
+      <if test="invoiceDate != null" >
+        INVOICE_DATE,
+      </if>
+      <if test="punishAmount != null" >
+        PUNISH_AMOUNT,
+      </if>
+      <if test="isOverdue != null" >
+        IS_OVERDUE,
+      </if>
+      <if test="repaireOverdueDay != null" >
+        REPAIRE_OVERDUE_DAY,
+      </if>
+      <if test="supplierOverdueDay != null" >
+        SUPPLIER_OVERDUE_DAY,
+      </if>
+      <if test="platformOverdueDay != null" >
+        PLATFORM_OVERDUE_DAY,
+      </if>
+      <if test="maxDeadlineDate != null" >
+        MAX_DEADLINE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="billGroupId != null" >
+        #{billGroupId,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerPartyId != null" >
+        #{buyerPartyId,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerName != null" >
+        #{buyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerPartyId != null" >
+        #{sellerPartyId,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerName != null" >
+        #{sellerName,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceType != null" >
+        #{invoiceType,jdbcType=CHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="dealAmount != null" >
+        #{dealAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="dealQuantity != null" >
+        #{dealQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="buyerCheck != null" >
+        #{buyerCheck,jdbcType=CHAR},
+      </if>
+      <if test="sellerCheck != null" >
+        #{sellerCheck,jdbcType=CHAR},
+      </if>
+      <if test="checkStatus != null" >
+        #{checkStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceStatus != null" >
+        #{invoiceStatus,jdbcType=CHAR},
+      </if>
+      <if test="settleStatus != null" >
+        #{settleStatus,jdbcType=INTEGER},
+      </if>
+      <if test="lastUpdatedStamp != null" >
+        #{lastUpdatedStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedTxStamp != null" >
+        #{lastUpdatedTxStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdStamp != null" >
+        #{createdStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdTxStamp != null" >
+        #{createdTxStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paymentId != null" >
+        #{paymentId,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentAmount != null" >
+        #{repaymentAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="discountAmount != null" >
+        #{discountAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceAmount != null" >
+        #{invoiceAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="financingLastAmount != null" >
+        #{financingLastAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="financingFee != null" >
+        #{financingFee,jdbcType=DECIMAL},
+      </if>
+      <if test="dealQuantityExcludesCassLoan != null" >
+        #{dealQuantityExcludesCassLoan,jdbcType=DECIMAL},
+      </if>
+      <if test="isCassLoan != null" >
+        #{isCassLoan,jdbcType=CHAR},
+      </if>
+      <if test="cassDiscountAmount != null" >
+        #{cassDiscountAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paymentMethodId != null" >
+        #{paymentMethodId,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeNo != null" >
+        #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="punishRate != null" >
+        #{punishRate,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceDate != null" >
+        #{invoiceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="punishAmount != null" >
+        #{punishAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="isOverdue != null" >
+        #{isOverdue,jdbcType=CHAR},
+      </if>
+      <if test="repaireOverdueDay != null" >
+        #{repaireOverdueDay,jdbcType=INTEGER},
+      </if>
+      <if test="supplierOverdueDay != null" >
+        #{supplierOverdueDay,jdbcType=INTEGER},
+      </if>
+      <if test="platformOverdueDay != null" >
+        #{platformOverdueDay,jdbcType=INTEGER},
+      </if>
+      <if test="maxDeadlineDate != null" >
+        #{maxDeadlineDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.generator.mybatis.po.PaymentBillGroupExample" resultType="java.lang.Integer" >
+    select count(*) from payment_bill_group
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update payment_bill_group
+    <set >
+      <if test="record.billGroupId != null" >
+        BILL_GROUP_ID = #{record.billGroupId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyerPartyId != null" >
+        BUYER_PARTY_ID = #{record.buyerPartyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyerName != null" >
+        BUYER_NAME = #{record.buyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerPartyId != null" >
+        SELLER_PARTY_ID = #{record.sellerPartyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerName != null" >
+        SELLER_NAME = #{record.sellerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoiceType != null" >
+        INVOICE_TYPE = #{record.invoiceType,jdbcType=CHAR},
+      </if>
+      <if test="record.type != null" >
+        TYPE = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dealAmount != null" >
+        DEAL_AMOUNT = #{record.dealAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.dealQuantity != null" >
+        DEAL_QUANTITY = #{record.dealQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="record.buyerCheck != null" >
+        BUYER_CHECK = #{record.buyerCheck,jdbcType=CHAR},
+      </if>
+      <if test="record.sellerCheck != null" >
+        SELLER_CHECK = #{record.sellerCheck,jdbcType=CHAR},
+      </if>
+      <if test="record.checkStatus != null" >
+        CHECK_STATUS = #{record.checkStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoiceStatus != null" >
+        INVOICE_STATUS = #{record.invoiceStatus,jdbcType=CHAR},
+      </if>
+      <if test="record.settleStatus != null" >
+        settle_status = #{record.settleStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastUpdatedStamp != null" >
+        LAST_UPDATED_STAMP = #{record.lastUpdatedStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastUpdatedTxStamp != null" >
+        LAST_UPDATED_TX_STAMP = #{record.lastUpdatedTxStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdStamp != null" >
+        CREATED_STAMP = #{record.createdStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createdTxStamp != null" >
+        CREATED_TX_STAMP = #{record.createdTxStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.paymentId != null" >
+        PAYMENT_ID = #{record.paymentId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.repaymentAmount != null" >
+        REPAYMENT_AMOUNT = #{record.repaymentAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.discountAmount != null" >
+        DISCOUNT_AMOUNT = #{record.discountAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.invoiceAmount != null" >
+        INVOICE_AMOUNT = #{record.invoiceAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.financingLastAmount != null" >
+        FINANCING_LAST_AMOUNT = #{record.financingLastAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.financingFee != null" >
+        FINANCING_FEE = #{record.financingFee,jdbcType=DECIMAL},
+      </if>
+      <if test="record.dealQuantityExcludesCassLoan != null" >
+        DEAL_QUANTITY_EXCLUDES_CASS_LOAN = #{record.dealQuantityExcludesCassLoan,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isCassLoan != null" >
+        IS_CASS_LOAN = #{record.isCassLoan,jdbcType=CHAR},
+      </if>
+      <if test="record.cassDiscountAmount != null" >
+        CASS_DISCOUNT_AMOUNT = #{record.cassDiscountAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.updateDate != null" >
+        UPDATE_DATE = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.paymentMethodId != null" >
+        PAYMENT_METHOD_ID = #{record.paymentMethodId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradeNo != null" >
+        TRADE_NO = #{record.tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.punishRate != null" >
+        PUNISH_RATE = #{record.punishRate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoiceDate != null" >
+        INVOICE_DATE = #{record.invoiceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.punishAmount != null" >
+        PUNISH_AMOUNT = #{record.punishAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.isOverdue != null" >
+        IS_OVERDUE = #{record.isOverdue,jdbcType=CHAR},
+      </if>
+      <if test="record.repaireOverdueDay != null" >
+        REPAIRE_OVERDUE_DAY = #{record.repaireOverdueDay,jdbcType=INTEGER},
+      </if>
+      <if test="record.supplierOverdueDay != null" >
+        SUPPLIER_OVERDUE_DAY = #{record.supplierOverdueDay,jdbcType=INTEGER},
+      </if>
+      <if test="record.platformOverdueDay != null" >
+        PLATFORM_OVERDUE_DAY = #{record.platformOverdueDay,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxDeadlineDate != null" >
+        MAX_DEADLINE_DATE = #{record.maxDeadlineDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update payment_bill_group
+    set BILL_GROUP_ID = #{record.billGroupId,jdbcType=VARCHAR},
+      BUYER_PARTY_ID = #{record.buyerPartyId,jdbcType=VARCHAR},
+      BUYER_NAME = #{record.buyerName,jdbcType=VARCHAR},
+      SELLER_PARTY_ID = #{record.sellerPartyId,jdbcType=VARCHAR},
+      SELLER_NAME = #{record.sellerName,jdbcType=VARCHAR},
+      INVOICE_TYPE = #{record.invoiceType,jdbcType=CHAR},
+      TYPE = #{record.type,jdbcType=VARCHAR},
+      DEAL_AMOUNT = #{record.dealAmount,jdbcType=DECIMAL},
+      DEAL_QUANTITY = #{record.dealQuantity,jdbcType=DECIMAL},
+      BUYER_CHECK = #{record.buyerCheck,jdbcType=CHAR},
+      SELLER_CHECK = #{record.sellerCheck,jdbcType=CHAR},
+      CHECK_STATUS = #{record.checkStatus,jdbcType=VARCHAR},
+      INVOICE_STATUS = #{record.invoiceStatus,jdbcType=CHAR},
+      settle_status = #{record.settleStatus,jdbcType=INTEGER},
+      LAST_UPDATED_STAMP = #{record.lastUpdatedStamp,jdbcType=TIMESTAMP},
+      LAST_UPDATED_TX_STAMP = #{record.lastUpdatedTxStamp,jdbcType=TIMESTAMP},
+      CREATED_STAMP = #{record.createdStamp,jdbcType=TIMESTAMP},
+      CREATED_TX_STAMP = #{record.createdTxStamp,jdbcType=TIMESTAMP},
+      PAYMENT_ID = #{record.paymentId,jdbcType=VARCHAR},
+      REPAYMENT_AMOUNT = #{record.repaymentAmount,jdbcType=DECIMAL},
+      DISCOUNT_AMOUNT = #{record.discountAmount,jdbcType=DECIMAL},
+      INVOICE_AMOUNT = #{record.invoiceAmount,jdbcType=DECIMAL},
+      FINANCING_LAST_AMOUNT = #{record.financingLastAmount,jdbcType=DECIMAL},
+      FINANCING_FEE = #{record.financingFee,jdbcType=DECIMAL},
+      DEAL_QUANTITY_EXCLUDES_CASS_LOAN = #{record.dealQuantityExcludesCassLoan,jdbcType=DECIMAL},
+      IS_CASS_LOAN = #{record.isCassLoan,jdbcType=CHAR},
+      CASS_DISCOUNT_AMOUNT = #{record.cassDiscountAmount,jdbcType=DECIMAL},
+      UPDATE_DATE = #{record.updateDate,jdbcType=TIMESTAMP},
+      PAYMENT_METHOD_ID = #{record.paymentMethodId,jdbcType=VARCHAR},
+      TRADE_NO = #{record.tradeNo,jdbcType=VARCHAR},
+      PUNISH_RATE = #{record.punishRate,jdbcType=VARCHAR},
+      INVOICE_DATE = #{record.invoiceDate,jdbcType=TIMESTAMP},
+      PUNISH_AMOUNT = #{record.punishAmount,jdbcType=DECIMAL},
+      IS_OVERDUE = #{record.isOverdue,jdbcType=CHAR},
+      REPAIRE_OVERDUE_DAY = #{record.repaireOverdueDay,jdbcType=INTEGER},
+      SUPPLIER_OVERDUE_DAY = #{record.supplierOverdueDay,jdbcType=INTEGER},
+      PLATFORM_OVERDUE_DAY = #{record.platformOverdueDay,jdbcType=INTEGER},
+      MAX_DEADLINE_DATE = #{record.maxDeadlineDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.generator.mybatis.po.PaymentBillGroup" >
+    update payment_bill_group
+    <set >
+      <if test="buyerPartyId != null" >
+        BUYER_PARTY_ID = #{buyerPartyId,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerName != null" >
+        BUYER_NAME = #{buyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerPartyId != null" >
+        SELLER_PARTY_ID = #{sellerPartyId,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerName != null" >
+        SELLER_NAME = #{sellerName,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceType != null" >
+        INVOICE_TYPE = #{invoiceType,jdbcType=CHAR},
+      </if>
+      <if test="type != null" >
+        TYPE = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="dealAmount != null" >
+        DEAL_AMOUNT = #{dealAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="dealQuantity != null" >
+        DEAL_QUANTITY = #{dealQuantity,jdbcType=DECIMAL},
+      </if>
+      <if test="buyerCheck != null" >
+        BUYER_CHECK = #{buyerCheck,jdbcType=CHAR},
+      </if>
+      <if test="sellerCheck != null" >
+        SELLER_CHECK = #{sellerCheck,jdbcType=CHAR},
+      </if>
+      <if test="checkStatus != null" >
+        CHECK_STATUS = #{checkStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceStatus != null" >
+        INVOICE_STATUS = #{invoiceStatus,jdbcType=CHAR},
+      </if>
+      <if test="settleStatus != null" >
+        settle_status = #{settleStatus,jdbcType=INTEGER},
+      </if>
+      <if test="lastUpdatedStamp != null" >
+        LAST_UPDATED_STAMP = #{lastUpdatedStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdatedTxStamp != null" >
+        LAST_UPDATED_TX_STAMP = #{lastUpdatedTxStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdStamp != null" >
+        CREATED_STAMP = #{createdStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createdTxStamp != null" >
+        CREATED_TX_STAMP = #{createdTxStamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paymentId != null" >
+        PAYMENT_ID = #{paymentId,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentAmount != null" >
+        REPAYMENT_AMOUNT = #{repaymentAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="discountAmount != null" >
+        DISCOUNT_AMOUNT = #{discountAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="invoiceAmount != null" >
+        INVOICE_AMOUNT = #{invoiceAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="financingLastAmount != null" >
+        FINANCING_LAST_AMOUNT = #{financingLastAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="financingFee != null" >
+        FINANCING_FEE = #{financingFee,jdbcType=DECIMAL},
+      </if>
+      <if test="dealQuantityExcludesCassLoan != null" >
+        DEAL_QUANTITY_EXCLUDES_CASS_LOAN = #{dealQuantityExcludesCassLoan,jdbcType=DECIMAL},
+      </if>
+      <if test="isCassLoan != null" >
+        IS_CASS_LOAN = #{isCassLoan,jdbcType=CHAR},
+      </if>
+      <if test="cassDiscountAmount != null" >
+        CASS_DISCOUNT_AMOUNT = #{cassDiscountAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paymentMethodId != null" >
+        PAYMENT_METHOD_ID = #{paymentMethodId,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeNo != null" >
+        TRADE_NO = #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="punishRate != null" >
+        PUNISH_RATE = #{punishRate,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceDate != null" >
+        INVOICE_DATE = #{invoiceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="punishAmount != null" >
+        PUNISH_AMOUNT = #{punishAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="isOverdue != null" >
+        IS_OVERDUE = #{isOverdue,jdbcType=CHAR},
+      </if>
+      <if test="repaireOverdueDay != null" >
+        REPAIRE_OVERDUE_DAY = #{repaireOverdueDay,jdbcType=INTEGER},
+      </if>
+      <if test="supplierOverdueDay != null" >
+        SUPPLIER_OVERDUE_DAY = #{supplierOverdueDay,jdbcType=INTEGER},
+      </if>
+      <if test="platformOverdueDay != null" >
+        PLATFORM_OVERDUE_DAY = #{platformOverdueDay,jdbcType=INTEGER},
+      </if>
+      <if test="maxDeadlineDate != null" >
+        MAX_DEADLINE_DATE = #{maxDeadlineDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where BILL_GROUP_ID = #{billGroupId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.generator.mybatis.po.PaymentBillGroup" >
+    update payment_bill_group
+    set BUYER_PARTY_ID = #{buyerPartyId,jdbcType=VARCHAR},
+      BUYER_NAME = #{buyerName,jdbcType=VARCHAR},
+      SELLER_PARTY_ID = #{sellerPartyId,jdbcType=VARCHAR},
+      SELLER_NAME = #{sellerName,jdbcType=VARCHAR},
+      INVOICE_TYPE = #{invoiceType,jdbcType=CHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      DEAL_AMOUNT = #{dealAmount,jdbcType=DECIMAL},
+      DEAL_QUANTITY = #{dealQuantity,jdbcType=DECIMAL},
+      BUYER_CHECK = #{buyerCheck,jdbcType=CHAR},
+      SELLER_CHECK = #{sellerCheck,jdbcType=CHAR},
+      CHECK_STATUS = #{checkStatus,jdbcType=VARCHAR},
+      INVOICE_STATUS = #{invoiceStatus,jdbcType=CHAR},
+      settle_status = #{settleStatus,jdbcType=INTEGER},
+      LAST_UPDATED_STAMP = #{lastUpdatedStamp,jdbcType=TIMESTAMP},
+      LAST_UPDATED_TX_STAMP = #{lastUpdatedTxStamp,jdbcType=TIMESTAMP},
+      CREATED_STAMP = #{createdStamp,jdbcType=TIMESTAMP},
+      CREATED_TX_STAMP = #{createdTxStamp,jdbcType=TIMESTAMP},
+      PAYMENT_ID = #{paymentId,jdbcType=VARCHAR},
+      REPAYMENT_AMOUNT = #{repaymentAmount,jdbcType=DECIMAL},
+      DISCOUNT_AMOUNT = #{discountAmount,jdbcType=DECIMAL},
+      INVOICE_AMOUNT = #{invoiceAmount,jdbcType=DECIMAL},
+      FINANCING_LAST_AMOUNT = #{financingLastAmount,jdbcType=DECIMAL},
+      FINANCING_FEE = #{financingFee,jdbcType=DECIMAL},
+      DEAL_QUANTITY_EXCLUDES_CASS_LOAN = #{dealQuantityExcludesCassLoan,jdbcType=DECIMAL},
+      IS_CASS_LOAN = #{isCassLoan,jdbcType=CHAR},
+      CASS_DISCOUNT_AMOUNT = #{cassDiscountAmount,jdbcType=DECIMAL},
+      UPDATE_DATE = #{updateDate,jdbcType=TIMESTAMP},
+      PAYMENT_METHOD_ID = #{paymentMethodId,jdbcType=VARCHAR},
+      TRADE_NO = #{tradeNo,jdbcType=VARCHAR},
+      PUNISH_RATE = #{punishRate,jdbcType=VARCHAR},
+      INVOICE_DATE = #{invoiceDate,jdbcType=TIMESTAMP},
+      PUNISH_AMOUNT = #{punishAmount,jdbcType=DECIMAL},
+      IS_OVERDUE = #{isOverdue,jdbcType=CHAR},
+      REPAIRE_OVERDUE_DAY = #{repaireOverdueDay,jdbcType=INTEGER},
+      SUPPLIER_OVERDUE_DAY = #{supplierOverdueDay,jdbcType=INTEGER},
+      PLATFORM_OVERDUE_DAY = #{platformOverdueDay,jdbcType=INTEGER},
+      MAX_DEADLINE_DATE = #{maxDeadlineDate,jdbcType=TIMESTAMP}
+    where BILL_GROUP_ID = #{billGroupId,jdbcType=VARCHAR}
+  </update>
+</mapper>
